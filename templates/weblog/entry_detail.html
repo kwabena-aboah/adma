@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n static %}
+
+{% load widget_tweaks %}
+{% load comments %}
+{% load social_share %}
+
+{% block body %}
+{% block content %}
+<div class="col s12 m12">
+	<div class="white-text center" style="background-color: #43a047;">
+		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
+		<h3>{% block title%}Entry Details{% endblock %}</h3>
+		<p>Some texts here</p>
+	</div>
+</div>
+<section class="section white lighten-4">
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m4">
+				<ul class="collection with-header">
+					<li class="collection-header"><h4>Star Navigation</h4></li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma1.jpg' %}" alt="" class="circle">
+					      <span class="title"><strong><b>News</b></strong></span>
+					      <p>latest news and posts from AdMA</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:entries_index' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma2.png' %}" alt="" class="circle">
+					      <span class="title"><strong><b>Other Portals</b></strong></span>
+					      <p>Relevant governmental links</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:links' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma3.png' %}" alt="" class="circle">
+						<span class="title"><strong><b>News Category</b></strong></span>
+					      <p>Category description for news</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:categories' %}"><i class="material-icons">grade</i></a>
+					</li>
+					{% if user.is_staff %}
+						<li class="collection-item"><a class="grey-text text-darken-3" href="#">All Contacts</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		<div class="col s12 m8">
+	    <div class="container">
+			<h2 class="title" style="font-size: 30px;">{{ entry.title }}</h2>
+			<div class="text">
+				{% if entry.cover_pic.url %}
+					<a href="#">
+						<img src="{{ entry.cover_pic.url }}" class="materialboxed responsive-img" style="width: 900px; height: 400px;">
+					</a>
+				{% endif %}
+			</div>
+			<div class="text">
+				<p class="flow-text">{{ entry.body_html|safe }}</p><br>
+				<p>Entry posted by {{ entry.author }}</p><br>
+				<p class="date">Entry posted on {{ entry.pub_date|date:"F j, Y"}}.</p><br>
+				<p>Entry tags: {{ entry.tags }}</p>
+				<div class="divider"></div>
+				<h2>Social Share</h2>
+				{% if user.is_staff %}
+					<button class="waves-effect waves-light btn blue darken-2">
+					{% post_to_facebook object_or_url 'Facebook' %}</button> 
+
+					<button class="waves-effect waves-light btn blue lighten-2">{% post_to_twitter object_or_url 'Twitter' %}</button> 
+
+					<button class="waves-effect waves-light btn blue accent-3">{% post_to_linkedin object.title object_or_url 'Linkedin' %}</button>
+
+					<button class="waves-effect waves-light btn blue-grey lighten-5">{% send_email object.title object_or_url 'Email' %}</button>
+					
+					<div class="divider"></div>
+					<h2>Actions</h2>
+					<a href="{% url 'weblog:edit_entry' entry.pk %}" class="waves-effect waves-light btn yellow darken-2">
+						<i class="material-icons left">create</i> 
+						Edit
+					</a>
+					<a href="#modal1" class="waves-effect waves-light btn modal-trigger red">
+						<i class="material-icons left">delete</i>
+						Delete
+					</a>
+				{% else %}
+					<button class="waves-effect waves-light btn blue darken-2">
+					{% post_to_facebook object_or_url 'Facebook' %}</button> 
+
+					<button class="waves-effect waves-light btn blue lighten-2">{% post_to_twitter object_or_url 'Twitter' %}</button> 
+
+					<button class="waves-effect waves-light btn blue accent-3">{% post_to_linkedin object.title object_or_url 'Linkedin' %}</button>
+
+					<button class="waves-effect waves-light btn blue-grey lighten-5">{% send_email object.title object_or_url 'Email' %}</button>
+				{% endif %}
+				<div class="divider"></div>
+				<h2>Comments</h2>
+				{% render_comment_list for entry %}
+				{% get_comment_count for entry as comment_count %}
+				<p>This entry has {{ comment_count }} comment{{ comment_count|pluralize }}.</p>
+
+				<h2>Post a comment</h2>
+				
+				{% render_comment_form for entry %}
+
+				{% if entry.categories.count %}
+				<p>This entry is part of the categor{{ entry.categories.count|pluralize:'y,ies' }}
+				{% for category in entry.categories.all %}
+					<a href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+					{% if forloop.last %}{% else %}
+					{% ifequal forloop.revcounter0 1 %}and {% else %}, {% endifequal %}
+					{% endif %}
+				{% endfor %}
+				</p>
+				{% else %}
+				<p class="text">This entry isn't part of any categories.</p>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- modal dialog box for delete -->
+<div class="modal" id="modal1">
+	<div class="modal-content">
+		<h4>Delete Entry</h4>
+		<p>Confirm entry delete!</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class="modal-close waves-effect waves-red btn-flat">Disagree</a>
+		<a href="{% url 'weblog:delete_entry' entry.pk %}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+	</div>
+</div>
+	
+{% endblock %}
+{% endblock %}

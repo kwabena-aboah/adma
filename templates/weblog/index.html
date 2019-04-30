@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+{% block content %}
+	<div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="{% static 'img/slider/adma1.jpg' %}">
+        <!-- random image -->
+        <div class="caption center-align">
+          <h2>Take Your Dream Vacation</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, provident eos dicta unde debitis</h5>
+        </div>
+      </li>
+      <li>
+        <img src="{% static 'img/slider/adma2.jpg' %}">
+        <!-- random image -->
+        <div class="caption left-align">
+          <h2>We Work With All Budgets</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus delectus inventore neque impedit</h5>
+        </div>
+      </li>
+      <li>
+        <img src="{% static 'img/slider/adma3.jpg' %}">
+        <!-- random image -->
+        <div class="caption right-align">
+          <h2>Group & Individual Getaways</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsum molestias excepturi doloremque</h5>
+        </div>
+      </li>
+      <li>
+        <img src="{% static 'img/slider/adma4.jpg' %}">
+        <!-- random image -->
+        <div class="caption right-align">
+          <h2>Group & Individual Getaways</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsum molestias excepturi doloremque</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Section: Icon Boxes -->
+  <section class="section section-icons grey lighten-4 center">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m3">
+          <div class="card-panel">
+            <i class="material-icons large green-text">home</i>
+            <h6>Building Permit</h6>
+            <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, tempore?</p> -->
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card-panel">
+            <i class="material-icons large green-text">wc</i>
+            <h6>Marriage Registration</h6>
+            <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, tempore?</p> -->
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card-panel">
+            <i class="material-icons large green-text">subscriptions</i>
+            <h6>Outdoor Advertising</h6>
+            <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, tempore?</p> -->
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card-panel">
+            <i class="material-icons large green-text">store</i>
+            <h6>Business Operating</h6>
+            <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, tempore?</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="search" class="section section-search green darken-2 white-text center scrollspy">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h3>Search Adentan Municipal Assembly</h3>
+          <div class="input-field">
+            <input type="text" class="white grey-text autocomplete" id="autocomplete-input" placeholder="Search entries...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Section: Gallery -->
+  <section id="gallery" class="section section-gallery scrollspy">
+    <div class="container">
+      <h4 class="center">
+        <span class="green-text">Photo</span> Gallery
+      </h4>
+      <div class="row">
+        <div class="col s12 m3">
+          <img src="{% static 'img/projects/adma5.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+        </div>
+        <div class="col s12 m3">
+          <img src="{% static 'img/projects/adma7.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+        </div>
+        <div class="col s12 m3">
+          <img src="{% static 'img/projects/adma3.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+        </div>
+        <div class="col s12 m3">
+          <img src="{% static 'img/projects/adma4.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+        </div>
+      </div>
+  </section>
+
+  <!-- Section: Follow -->
+  <section class="section section-follow green darken-2 white-text center">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h4>Follow AdMA</h4>
+          <p>Follow us on social media</p>
+          <a href="#" class="white-text">
+            <i class="fab fa-facebook fa-4x"></i>
+          </a>
+          <a href="#" class="white-text">
+            <i class="fab fa-twitter fa-4x"></i>
+          </a>
+          <a href="#" class="white-text">
+            <i class="fab fa-linkedin fa-4x"></i>
+          </a>
+          <a href="#" class="white-text">
+            <i class="fab fa-google-plus fa-4x"></i>
+          </a>
+          <a href="#" class="white-text">
+            <i class="fab fa-pinterest fa-4x"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Section: Blog -->
+    <div class="parallax-container">
+      <div class="parallax"><img src="{% static 'img/projects/adma7.jpg' %}"></div>
+    </div>
+
+    <section id="blog" class="section section-blog scrollspy">
+	  <div class="container">
+	  	<h3 class="center">
+        <span class="green-text">Latest</span> News
+    </h3>
+		  <div class="row">
+		  	{% for entry in entries %}
+		    <div class="col s12 m6 l3">
+		      <div class="card medium">
+		        <div class="card-image">
+		        {% if entry.cover_pic.url %}
+		        <a href="{{ entry.get_absolute_url }}">
+		          <img src="{{ entry.cover_pic.url }}" style="width: 1600px; height: 700px;" class="responsive-img">
+		         {% endif %}
+		          <span class="card-title" style="background-color: #43a047; font-size: 12px; width: 1600px;">{{ entry.title }}</span>
+		        </a>
+		        </div>
+		        <div class="card-content">
+		        {% if entry.excerpt_html %}
+					<div><a href="{{ entry.get_absolute_url }}" class="black-text">{{ entry.excerpt_html|truncatewords_html:"10"|safe }}</a></div>
+				{% else %}
+					<div><a href="{{ entry.get_absolute_url }}" class="black-text">{{ entry.body_html|truncatewords_html:"10"|safe }}</a></div>
+				{% endif %}
+					<div class="card-action"><a href="{{ entry.get_absolute_url }}" class="waves-effect waves-light btn-small green">Read More</a></div>
+		        </div>
+		      </div>
+		    </div>
+		    {% endfor %}
+		  </div>
+	  </div>
+	</section>
+
+  <div class="parallax-container">
+    <div class="parallax"><img src="{% static 'img/projects/adma8.jpg' %}"></div>
+  </div>
+
+	<!-- Section: Contact -->
+  <section id="contact" class="section section-contact scrollspy">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card-panel green white-text center">
+            <i class="material-icons">email</i>
+            <h5>Visit or Call us</h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium fugit tempore hic enim possimus molestias
+              quisquam impedit corrupti eveniet.</p>
+          </div>
+          <ul class="collection">
+            <li class="collection-item"><a href="mailto:mintahkwabena13@gmail.com"><i class="material-icons">email</i> info@adma.gov.gh</a></li>
+            <li class="collection-item"><i class="material-icons">phone</i> 030 2520883</li>
+            <li class="collection-item"><i class="material-icons">location_on</i> 1st Adma Drive, <em>Digital address</em>: GD-009- 1853</li>
+          </ul>
+        </div>
+        <div class="col s12 m6">
+    	 <div class="card-panel green white-text center">
+	        <i class="material-icons">email</i>
+	        <h5>Contact Us For Booking</h5>
+	        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium fugit tempore hic enim possimus molestias
+	          quisquam impedit corrupti eveniet.</p>
+	      </div>
+          <ul class="collection">
+            <h5>Please fill out this form</h5>
+            <li class="collection-item"><a href="{% static 'files/Bye-laws.pdf' %}"><i class="material-icons">cloud_download</i> Bye-laws</a></li>
+            <li class="collection-item"><a href="{% static 'files/DEVT _BUILDING_CONST_PERMIT.pdf' %}"><i class="material-icons">cloud_download</i> Development Permmit</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+{% endblock %}
+{% endblock %}

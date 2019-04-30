@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+{% block content %}
+
+<div class="col s12 m12">
+	<div class="white-text center" style="background-color: #43a047;">
+		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
+		<h3>{% block title%}The Assembly{% endblock %}</h3>
+		<p>Some texts here</p>
+	</div>
+</div>
+<section class="section white lighten-4">
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m3">
+				<ul class="collection with-header">
+					<li class="collection-header"><h5>Star Navigation</h5></li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma1.jpg' %}" alt="" class="circle">
+					      <span class="title"><strong><b>News</b></strong></span>
+					      <p>latest news and posts from AdMA</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:entries_index' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma2.png' %}" alt="" class="circle">
+					      <span class="title"><strong><b>Other Portals</b></strong></span>
+					      <p>Relevant governmental links</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:links' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma3.png' %}" alt="" class="circle">
+						<span class="title"><strong><b>News Category</b></strong></span>
+					      <p>Category description for news</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:categories' %}"><i class="material-icons">grade</i></a>
+					</li>
+					{% if user.is_staff %}
+						<li class="collection-item"><a class="grey-text text-darken-3" href="#">All Contacts</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		<div class="col s12 m9">
+	    <div class="container">
+	    	<h2>About Us</h2>
+	    	<blockquote>
+				<h3>INTRODUCTION</h3>
+			</blockquote>
+
+			<p class="flow-text">The Adentan Municipality with a projected population of 111,105 is one of the 26 districts in the Greater Accra Region. Adentan is unique for its hosting of the elite population in the nation’s capital and is also noted for its well-planned physical layout, which has attracted many Real Estate Companies such as Trassaco Ghana Ltd, Regimanuel Gray, Edlorm Estate to the municipality. Adentan, which previously had been part of the Tema municipality assumed a full municipal status in 2008 following the passage of LI 1888.</p>
+
+			<blockquote>
+				<h3>GEOGRAPHICAL LOCATION</h3>
+			</blockquote>
+			
+
+			<p class="flow-text">The Adentan Municipality lies 10 kilometres to the North- east of Accra, specifically located on latitude 5’ 43’ North and longitude 0’ 09’ west. The Municipality has a land of about of 85 sq. km (33 sq mls). It shares boundaries with Kpone-Katamanso and Ashaiman Municipalities in the East, Madina / LaNkwatanang Municipality in the West, Kpone-Katamanso in the North and Madina / LaNkwatanang  and Ledzokuku Krowor Municipalities in the south.<br>
+
+			The municipality serves as a nodal point where the main Accra/ Aburi/ Koforidua and Accra/ Dodowa trunk roads pass.</p>
+
+			<blockquote>
+				<h3>POLITICAL ADMINISTRATION</h3>
+			</blockquote>
+
+			<p class="flow-text">The Adentan Municipal Assembly has a General Assembly membership of 18 comprising 12 elected members, 6 government appointees, 1 Member of Parliament with the Municipal Chief Executive as the representative of the Head of State at the Municipal level. The General Assembly has 2 committees which are the Executive Committee and Public Relations Complaints Committee (PRCC). It also has 5 statutory Sub-Committees and 6 other non- statutory sub-committees. The five are Finance and Administration (F&A), Works Sub-Committee, Development Planning, Social Services and Justice and Security Sub-Committees. The non-statutory committees are Education, Agriculture, Environmental and Sanitation, Women and Children, Micro and Small Enterprises Promotion and Revenue Mobilization sub-committees<br>
+
+			The municipality has four Zonal Councils namely; Gbentanaa, Nii Ashale, Koose and Sutsurunaa which are mandated to mobilize revenue, implement policies at the local level and also mobilize communities to participate in decision making.</p>
+
+			<blockquote>
+				<h3>AGRICULTURE</h3>
+			</blockquote>
+
+			<p class="flow-text">Adentan is mainly an urban area with most of the labour force in the Public Sector. With a population of 92, 831 and an estimated farmer population of 1,855, the percentage of labour force in the agricultural sector in Adentan is estimated to be 1.99%. Currently Agricutural activities are prevalent in the following electoral areas; Man Momo, New Adenta, Amrahia-Marledzor, Nmai Dzor, Otano, Man Hee, Ogbojo and Adjiriganor.</p>
+
+			<blockquote>
+				<h3>TOURISM</h3>
+			</blockquote>
+
+			<p class="flow-text">In the tourism industry, Adentan is one of the most promising assemblies in the Accra Metropolis. It is home to a number of recreational parks like the Marina Park, Rufus Park, Tesa Lake Resort etc. It also has very good hospitality facilities such as Ampomaah Hotel, Tenko Plaza, PH Hotel. The University of Ghana and the Amrahia Dairy Farms provide good opportunities for tourists to learn more about endangered animal and plant species.</p>
+
+			<blockquote>
+				<h3>INDUSTRY</h3>
+			</blockquote>
+
+			<p class="flow-text">The Municipality has few extractive and processing industries and quite a number of estate development companies and others that produce various commodities and services which contribute to the assembly’s internally generated revenue in terms of business operating licenses and property rate.</p>
+	    </div>
+	   </div>
+	 </div>
+	</div>
+</section>
+{% endblock %}
+{% endblock %}

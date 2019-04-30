@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+{% block content %}
+
+<div class="col s12 m12">
+	<div class="white-text center" style="background-color: #43a047;">
+		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
+		<h3>{% block title%}Gbentanaa Zonal Council{% endblock %}</h3>
+		<p>Some texts here</p>
+	</div>
+</div>
+<section class="section white lighten-4">
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m3">
+				<ul class="collection with-header">
+					<li class="collection-header"><h5>Star Navigation</h5></li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma1.jpg' %}" alt="" class="circle">
+					      <span class="title"><strong><b>News</b></strong></span>
+					      <p>latest news and posts from AdMA</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:entries_index' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma2.png' %}" alt="" class="circle">
+					      <span class="title"><strong><b>Other Portals</b></strong></span>
+					      <p>Relevant governmental links</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:links' %}"><i class="material-icons">grade</i></a>
+					</li>
+					<li class="collection-item avatar">
+						<img src="{% static 'img/collections/adma3.png' %}" alt="" class="circle">
+						<span class="title"><strong><b>News Category</b></strong></span>
+					      <p>Category description for news</p>
+						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:categories' %}"><i class="material-icons">grade</i></a>
+					</li>
+					{% if user.is_staff %}
+						<li class="collection-item"><a class="grey-text text-darken-3" href="#">All Contacts</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		<div class="col s12 m9">
+	    <div class="container">
+	    	<h2>Gbentanaa Zonal</h2>
+	    	<blockquote>
+	    		Introduction
+	    	</blockquote>
+			 
+			<p class="flow-text">The Gbentanaa Zonal Council is one of the four Zonal Councils of the Adentan Municipality.  The main functions of the zonal Council include the mobilization of revenue, implementation of policies at the local level and also mobilize community to participate in decision making. As part of activities to help the Zonal Council properly plan and implement activities for development, the Zonal Council was assisted to come out with a four (4) years (2018-2021) Medium Term Development Plan which will guide the implementation of envisioned development projects and programmes in the zonal area.</p>
+
+			<p class="flow-text">The preparation of this Medium Term Zonal Plan is to further deepen the decentralization process by bringing governance to the door-steps of the people through involving them in the Planning Process which affects their own life. In view of these, a series of meetings were held with the Zonal Council members and other stakeholders in order to come up with this document. The participants were expected to lead and assist in identifying the problems/ needs, goals and objectives of their Zonal Council and to harmonize these into a Zonal Council plan, hence the making of the this document.</p>
+
+			<p class="flow-text">This document is a detailed plan enlisting the profile of the area in the first chapter, the problems and suggested solutions in the second chapter, the goals and strategies in the third chapter, the composite programmes of action in the fourth chapter and then the detailed projects and programmes for the various years in the last chapter.</p>
+
+			<p class="flow-text">It is hoped that Stakeholders and development partners will support the efforts of the people of Gbentanaa Zonal Area to bring development to the Zonal area and thereby improve the living conditions of the people of the Zone.</p>
+
+			 
+			<blockquote>
+				Brief History of the Zonal Area
+			</blockquote>
+			<p class="flow-text">Gbentanaa Zonal Council is one of the four zones in the Adentan Municipality. The Zonal Council is made up of four (4) electoral areas namely Man Momo, New Adentan, New Legon and Gbentanaa. Some communities in the Zonal Council area are Adentan Old Town, New Adentan, Adentan Housing Estates, Approtech, Commandos, East Adentan, New Legon, SSNIT Flats, Frafraha, Ritz Areas and Alhaji</p>
+
+			<br>
+			<div class="center">
+				<a href="{% static 'files/2018-2021GBENTANAAZONALPLAN .pdf' %}"><i class="material-icons">cloud_download</i> Read more</a>
+			</div>
+
+	    </div>
+	   </div>
+	  </div>
+	</div>
+</section>
+{% endblock %}
+{% endblock %}

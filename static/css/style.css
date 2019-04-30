@@ -1,0 +1,66 @@
+/*body{
+  margin:0;
+  padding: 0;
+}*/
+.note{
+  position: fixed;
+  bottom: 15px;
+  left:15px;
+  height:auto;
+  max-width: 400px;
+  box-shadow: 0px 0px 15px #ccc;
+  padding: 15px 15px 15px 90px;
+  font-family: 'Oswald', sans-serif;
+}
+.note strong{
+  margin:0;
+  padding: 0;
+}
+.note strong{
+  font-size: 13px;
+  color: inherit;
+}
+.note .note-icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  widows: 75px;
+  background-color: #222;
+}
+.note .note-icon .material-icons{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 25px;
+}
+.note.close .material-icons{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+}
+.note.success .note-icon{
+  background-color: #27ae60;
+}
+.note.info .note-icon{
+  background-color: #2980b9;
+}
+.note.warning .note-icon{
+  background-color: #f39c12;
+}
+.note.danger .note-icon{
+  background-color: #c0392b;
+}
+
+.section-search input{
+  padding: 5px !important;
+  font-size: 18px !important;
+  width: 90% !important;
+  border: #f4f4f4 3px solid !important;
+}
+.section-follow .fa-4x{
+  margin: 5px 10px;
+}

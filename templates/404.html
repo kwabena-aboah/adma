@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Page not found' %}{% endblock %}
+
+{% block body %}
+{% block content %}
+
+<h2>{% trans 'Page not found' %}</h2>
+
+<p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+
+{% endblock %}
+{% endblock %}

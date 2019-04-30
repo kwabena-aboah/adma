@@ -1,0 +1,201 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+
+	<title>AdMA</title>
+
+	 <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="{% static 'img/adentan.png' %}">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Adentan Municipal Assembly">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/adentan.png' %}">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="{% static 'img/adentan.png' %}">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="{% static 'img/adentan.png' %}">
+
+	
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen,projection">
+
+</head>
+<body id="home" class="scrollspy">
+	<!-- navigation bar -->
+	 <div class="navbar-fixed">
+	 	<nav role='navigation' class="green darken-2">
+		    <div class="nav-wrapper">
+		      <a href="/" class="brand-logo"><img id="logo-container" src="{% static 'img/adentan.png' %}" width="80px" height="70px"></a>
+		      <a href="#" data-target="menu-responsive" class="sidenav-trigger">
+		      	<i class="material-icons">menu</i>
+		      </a>
+		      <ul class="right hide-on-med-and-down">
+		        <li><a href="{% url 'dashboard:assembly' %}"><i class="material-icons left">account_balance</i>The Assembly</a></li>
+
+		        <!-- dropdown trigger -->
+		        <li><a href="#" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>Zonal Councils</a></li>
+		        <!-- zonal council dropdown -->
+		        <ul id="dropdown1" class="dropdown-content">
+				  <li><a href="{% url 'dashboard:koose' %}">Koose Zonal</a></li>
+				  <li><a href="{% url 'dashboard:sutsrunaa' %}">Sutsrunaa Zonal</a></li>
+				  <li class="divider"></li>
+				  <li><a href="{% url 'dashboard:gbentanaa' %}">Gbentanaa Zonal</a></li>
+				  <li><a href="{% url 'dashboard:nii' %}">Nii Ashalley Zonal</a></li>
+				</ul>
+				<!-- end dropdown -->
+
+		        <li><a href="#"><i class="material-icons left">photo_camera</i>Departments</a></li>
+		        <li><a href="{% url 'weblog:entries_index' %}"><i class="material-icons left">public</i>News</a></li>
+		        {% if user.is_authenticated %}
+			    	<li><a class="profile-data-name"><i class="material-icons left">person</i>{{ user.username }}</a></li>
+			    	<li><a href="{% url 'accounts:user_logout' %}"><i class="material-icons left">lock_outline</i>Logout</a></li>
+			    {% else %}
+			    	<li><a href="{% url 'accounts:login_now' %}"><i class="material-icons left">lock_open</i>Login</a></li>
+			    {% endif %}
+		      </ul>
+		    </div>
+	  </nav>
+	</div>
+
+	<!-- sidenavigation menu -->
+	<ul class="sidenav" id="menu-responsive">
+		<li class="collection-header center-align">
+			<div class="user-view">
+		      <div class="background">
+		        <img src="{% static 'img/office.jpg' %}" class="responsive-img" style="width: 100%; height: 100%;">
+		     </div>
+          <a href="/"><img class="circle" src="{% static 'img/logo.jpg' %}"></a><br>
+          {% if user.is_authenticated %}
+              <a href="#!name"><span class="name">{{ user.username }}</span></a>
+              <a href="#!email"><span class="email">{{ user.email }}</span></a>
+          {% endif %}
+        </div></li>
+		<li><a href="{% url 'dashboard:assembly' %}"><i class="material-icons left">account_balance</i>The Assembly</a></li>
+
+        <!-- dropdown trigger -->
+        <li><a href="#" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>Zonal Councils</a></li>
+        <!-- zonal council dropdown -->
+        <ul id="dropdown1" class="dropdown-content">
+		  <li><a href="{% url 'dashboard:koose' %}">Koose Zonal</a></li>
+		  <li><a href="{% url 'dashboard:sutsrunaa' %}">Sutsrunaa Zonal</a></li>
+		  <li class="divider"></li>
+		  <li><a href="{% url 'dashboard:gbentanaa' %}">Gbentanaa Zonal</a></li>
+		  <li><a href="{% url 'dashboard:nii' %}">Nii Ashalley Zonal</a></li>
+		</ul>
+		<!-- end dropdown -->
+
+        <li><a href="#"><i class="material-icons left">photo_camera</i>Departments</a></li>
+        <li><a href="{% url 'weblog:entries_index' %}"><i class="material-icons left">public</i>News</a></li>
+        {% if user.is_authenticated %}
+	    	<li><a class="profile-data-name"><i class="material-icons left">person</i>{{ user.username }}</a></li>
+	    	<li><a href="{% url 'accounts:user_logout' %}"><i class="material-icons left">lock_outline</i>Logout</a></li>
+	    {% else %}
+	    	<li><a href="{% url 'accounts:login_now' %}"><i class="material-icons left">lock_open</i>Login</a></li>
+	    {% endif %}
+	</ul>
+
+	<div>
+	{% block body %}
+		{% block content %}
+
+		{% endblock %}
+	{% endblock %}
+	</div>
+	<!-- floating action buttons -->
+	{% if user.is_staff %}
+		<div class="fixed-action-btn">
+			<a class="btn-floating btn-large red">
+				<i class="large material-icons">create</i>
+			</a>
+			<ul>
+				<li><a href="{% url 'weblog:new_entry' %}" class="btn-floating red"><i class="material-icons">publish</i></a></li>
+				<li><a href="{% url 'weblog:new_link' %}" class="btn-floating yellow darken-2"><i class="material-icons">link</i></a></li>
+				<li><a href="{% url 'weblog:new_category' %}" class="btn-floating green"><i class="material-icons">create_new_folder</i></a></li>
+			</ul>
+		</div>
+	{% endif %}
+	</div>
+
+	<!-- messages -->
+	{% if messages %}
+		<div class="note success">
+			<div class="note-icon"><i class="material-icons">lock_open</i></div>
+			{% for message in messages %}
+				<strong{% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</strong>
+			{% endfor %}
+			<div class="close"><i class="material-icons">lock_ountline</i></div>
+		</div>
+	{% endif %}
+	<!-- end messages -->
+	<footer class="section page-footer green darken-2">
+		<div class="container">
+			<div class="row">
+				<div class="col m4 l4 s12">
+					<h5 class="white-text">About AdMA</h5>
+					<p class="grey-text text-lighten-4">special info here</p>
+				</div>
+				<div class="col m4 l4 s12">
+					<h5 class="white-text">Pages</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:entries_index' %}">News</a></li>
+						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:links' %}">Links</a></li>
+						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:categories' %}">Categories</a></li>
+						{% if user.is_staff %}
+							<li><a class="grey-text text-lighten-3" href="#">All Contacts</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				<div class="col m4 l4 s12">
+					<h5 class="white-text">contact</h5>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				&copy; {% now "Y" %}
+				<a href="/" class="grey-text text-lighten-4 right">Adentan Municipal Assembly</a>
+			</div>
+		</div>
+	</footer>
+	<!-- material js cdn -->
+	<script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
+	<script src="{% static 'js/materialize.min.js' %}"></script>
+	<script src="{% static 'js/sidenav.js' %}"></script>
+	<script type="text/javascript">
+		//Slider
+	  	const slider = document.querySelector('.slider');
+	  	M.Slider.init(slider,{
+	    	indicators:false,
+	    	height: 500,
+	   		transition: 500,
+	    	interval: 6000
+	  	});
+
+	  	// ScrollSpy
+    	const ss = document.querySelectorAll('.scrollspy');
+    	M.ScrollSpy.init(ss, {});
+
+
+		$(document).ready(function(){
+			$(".note .close").on("click", function(){
+				$(".note").hide();
+			})
+		})
+	</script>
+</body>
+</html>
