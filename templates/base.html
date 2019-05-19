@@ -26,51 +26,95 @@
 
     <link rel="shortcut icon" href="{% static 'img/adentan.png' %}">
 
-	
+
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen,projection">
+		<style media="screen">
+		#global-nav {
+		  height: 150px;
+		  width: 100%;
+		  line-height: 150px;
+		    -webkit-transition: height .5s, line-height .5s; /* Safari */
+		    transition: height .5s, line-height .5s;
+		}
+
+		.site-title {
+		  display: inline-block;
+		  -webkit-transition: all .5s;
+		    transition: all .5s;
+		}
+
+		.scrolled-nav .site-title img {
+		  width: 90px;
+			height: 60px;
+		}
+		ul.nav-list {
+		  list-style: none;
+		}
+
+		.nav-list li {
+		  list-style: none;
+		  display: inline-block;
+		  padding-left: 20px;
+		}
+		.scrolled-nav {
+		  height: 60px !important;
+		  line-height: 60px !important;
+		}
+
+		.counter {
+		  width: 20px;
+		  height: 20px;
+		  background: black;
+		  color: #fff;
+		  position: fixed;
+		  top: 120px;
+		  right: 0;
+		}
+
+
+		</style>
 
 </head>
 <body id="home" class="scrollspy">
-	<!-- navigation bar -->
-	 <div class="navbar-fixed">
-	 	<nav role='navigation' class="green darken-2">
-		    <div class="nav-wrapper">
-		      <a href="/" class="brand-logo"><img id="logo-container" src="{% static 'img/adentan.png' %}" width="80px" height="70px"></a>
-		      <a href="#" data-target="menu-responsive" class="sidenav-trigger">
-		      	<i class="material-icons">menu</i>
-		      </a>
-		      <ul class="right hide-on-med-and-down">
-		        <li><a href="{% url 'dashboard:assembly' %}"><i class="material-icons left">account_balance</i>The Assembly</a></li>
-
-		        <!-- dropdown trigger -->
-		        <li><a href="#" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>Zonal Councils</a></li>
+			<div class="navbar-fixed">
+			 	<nav role='navigation' class="green darken-2" id="global-nav">
+				    <div class="nav-wrapper">
+				      <a href="/" class="brand-logo site-title"><img id="logo-container" src="{% static 'img/adentan.png' %}" width="180px" height="140px"></a>
+				      <a href="#" data-target="menu-responsive" class="sidenav-trigger">
+				      	<i class="material-icons">menu</i>
+				      </a>
+		      <ul class="right hide-on-med-and-down nav-list">
+		      	<li><a href="/">Home</a></li>
+		        <li><a href="{% url 'dashboard:assembly' %}">The Assembly</a></li>
+				<!-- dropdown trigger -->
+		        <li><a href="#" class="dropdown-trigger" data-target="dropdown1">Zonal Councils</a></li>
 		        <!-- zonal council dropdown -->
 		        <ul id="dropdown1" class="dropdown-content">
-				  <li><a href="{% url 'dashboard:koose' %}">Koose Zonal</a></li>
-				  <li><a href="{% url 'dashboard:sutsrunaa' %}">Sutsrunaa Zonal</a></li>
-				  <li class="divider"></li>
-				  <li><a href="{% url 'dashboard:gbentanaa' %}">Gbentanaa Zonal</a></li>
-				  <li><a href="{% url 'dashboard:nii' %}">Nii Ashalley Zonal</a></li>
-				</ul>
-				<!-- end dropdown -->
+						  <li><a href="{% url 'dashboard:koose' %}">Koose Zonal</a></li>
+						  <li><a href="{% url 'dashboard:sutsrunaa' %}">Sutsrunaa Zonal</a></li>
+						  <li class="divider"></li>
+						  <li><a href="{% url 'dashboard:gbentanaa' %}">Gbentanaa Zonal</a></li>
+						  <li><a href="{% url 'dashboard:nii' %}">Nii Ashalley Zonal</a></li>
+						</ul>
+						<!-- end dropdown -->
 
-		        <li><a href="#"><i class="material-icons left">photo_camera</i>Departments</a></li>
-		        <li><a href="{% url 'weblog:entries_index' %}"><i class="material-icons left">public</i>News</a></li>
-		        {% if user.is_authenticated %}
-			    	<li><a class="profile-data-name"><i class="material-icons left">person</i>{{ user.username }}</a></li>
-			    	<li><a href="{% url 'accounts:user_logout' %}"><i class="material-icons left">lock_outline</i>Logout</a></li>
-			    {% else %}
-			    	<li><a href="{% url 'accounts:login_now' %}"><i class="material-icons left">lock_open</i>Login</a></li>
-			    {% endif %}
+		        {% if user.is_staff %}
+		        <li><a href="{% url 'dashboard:projects' %}">Media</a></li>
+		        {% endif %}
+		        <li><a href="{% url 'weblog:entries_index' %}">The News</a></li>
+
 		      </ul>
 		    </div>
 	  </nav>
 	</div>
+<!-- </div>
+</div> -->
 
 	<!-- sidenavigation menu -->
 	<ul class="sidenav" id="menu-responsive">
@@ -85,7 +129,7 @@
               <a href="#!email"><span class="email">{{ user.email }}</span></a>
           {% endif %}
         </div></li>
-		<li><a href="{% url 'dashboard:assembly' %}"><i class="material-icons left">account_balance</i>The Assembly</a></li>
+		<li><a href="{% url 'dashboard:assembly' %}"><i class="material-icons right">account_balance</i>The Assembly</a></li>
 
         <!-- dropdown trigger -->
         <li><a href="#" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i>Zonal Councils</a></li>
@@ -99,13 +143,15 @@
 		</ul>
 		<!-- end dropdown -->
 
-        <li><a href="#"><i class="material-icons left">photo_camera</i>Departments</a></li>
-        <li><a href="{% url 'weblog:entries_index' %}"><i class="material-icons left">public</i>News</a></li>
+       {% if user.is_staff %}
+        <li><a href="{% url 'dashboard:projects' %}"><i class="material-icons right">photo_camera</i>Media</a></li>
+        {% endif %}
+        <li><a href="{% url 'weblog:entries_index' %}"><i class="material-icons right">public</i>News</a></li>
         {% if user.is_authenticated %}
-	    	<li><a class="profile-data-name"><i class="material-icons left">person</i>{{ user.username }}</a></li>
-	    	<li><a href="{% url 'accounts:user_logout' %}"><i class="material-icons left">lock_outline</i>Logout</a></li>
+	    	<li><a class="profile-data-name"><i class="material-icons right">person</i>{{ user.username }}</a></li>
+	    	<li><a href="{% url 'accounts:user_logout' %}"><i class="material-icons right">lock_outline</i>Logout</a></li>
 	    {% else %}
-	    	<li><a href="{% url 'accounts:login_now' %}"><i class="material-icons left">lock_open</i>Login</a></li>
+	    	<li><a href="{% url 'accounts:login_now' %}"><i class="material-icons right">lock_open</i>Login</a></li>
 	    {% endif %}
 	</ul>
 
@@ -136,7 +182,7 @@
 		<div class="note success">
 			<div class="note-icon"><i class="material-icons">lock_open</i></div>
 			{% for message in messages %}
-				<strong{% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</strong>
+				<strong{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</strong>
 			{% endfor %}
 			<div class="close"><i class="material-icons">lock_ountline</i></div>
 		</div>
@@ -145,23 +191,22 @@
 	<footer class="section page-footer green darken-2">
 		<div class="container">
 			<div class="row">
-				<div class="col m4 l4 s12">
-					<h5 class="white-text">About AdMA</h5>
-					<p class="grey-text text-lighten-4">special info here</p>
+				<div class="col m6 l6 s12">
+					<h5 class="white-text">Get Social</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="https://www.facebook.com/AdentanMunicipalAssembly/">Facebook</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://twitter.com/AdMAOfficial1">Twitter</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://www.instagram.com/explore/tags/adentanmunicipalassembly/?hl=en">Instagram</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://www.youtube.com/channel/UCxYz7wOKhK9WDbUxAeqMy8w/featured">Youtube</a></li>
+					</ul>
 				</div>
-				<div class="col m4 l4 s12">
+				<div class="col m6 l6 s12">
 					<h5 class="white-text">Pages</h5>
 					<ul>
 						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:entries_index' %}">News</a></li>
 						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:links' %}">Links</a></li>
 						<li><a class="grey-text text-lighten-3" href="{% url 'weblog:categories' %}">Categories</a></li>
-						{% if user.is_staff %}
-							<li><a class="grey-text text-lighten-3" href="#">All Contacts</a></li>
-						{% endif %}
 					</ul>
-				</div>
-				<div class="col m4 l4 s12">
-					<h5 class="white-text">contact</h5>
 				</div>
 			</div>
 		</div>
@@ -172,9 +217,10 @@
 			</div>
 		</div>
 	</footer>
-	<!-- material js cdn -->
-	<script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
-	<script src="{% static 'js/materialize.min.js' %}"></script>
+	<!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="{% static 'js/sidenav.js' %}"></script>
 	<script type="text/javascript">
 		//Slider
@@ -196,6 +242,22 @@
 				$(".note").hide();
 			})
 		})
+
+		$(document).ready(function(){
+		  var scrollTop = 0;
+		  $(window).scroll(function(){
+		    scrollTop = $(window).scrollTop();
+		     $('.counter').html(scrollTop);
+
+		    if (scrollTop >= 100) {
+		      $('#global-nav').addClass('scrolled-nav');
+		    } else if (scrollTop < 100) {
+		      $('#global-nav').removeClass('scrolled-nav');
+		    }
+
+		  });
+
+		});
 	</script>
 </body>
 </html>

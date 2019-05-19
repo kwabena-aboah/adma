@@ -3,19 +3,13 @@
 
 {% block body %}
 {% block content %}
-<div class="col s12 m12">
-	<div class="white-text center" style="background-color: #43a047;">
-		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
-		<h3>{% block title%}Login Page{% endblock %}</h3>
-		<p>Some texts here</p>
-	</div>
-</div>
+
 <section class="section white lighten-4">
 	<div class="container">
 		<div class="row">
+			<h3 class="center">{% block title%}Login{% endblock %}</h3>
 			<div class="col s12 m8">
 			    <div class="container">
-		          <center><h4 class="title">Login</h4></center>
 		          <p>Please contact site admin with your email to create an account for you.<br>
 		          You'll be prompted to use your email to login by the admin.</p>
 		        {% include 'accounts/login_now.html' %}

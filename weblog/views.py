@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 from . models import Entry, Category, Link
 from . forms import EntryForm, CategoryForm, LinkForm
+from dashboard.models import Projects
 
 """
 
@@ -16,13 +17,14 @@ Details included.
 
 """
 def index(request):
-    entries = Entry.live.order_by('-pub_date')[0:4]
-    context = {'entries': entries}
+    entries = Entry.live.order_by('-pub_date')[0:6]
+    media = Projects.objects.order_by('-name')[0:4]
+    context = {'entries': entries, 'media':media}
     return render(request, 'weblog/index.html', context)
 
 
 def entries_index(request):
-    entry_list = Entry.live.all()
+    entry_list = Entry.live.order_by('-pub_date')
     category_list = Category.objects.all()
 
     paginator = Paginator(entry_list, 5)

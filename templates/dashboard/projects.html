@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+{% block content %}
+
+<section class="section white lighten-4">
+	<div class="row">
+		<div class="container">
+			<h3 class="center">{% block title%}Media and Projects{% endblock %}</h3>
+			{% include 'weblog/sidebar.html' %}
+			</div>
+			<div class="container">
+		    {% for image in media %}
+			<div class="col s12 m8 offset-m2 l6 offset-l3">
+				<div class="card-panel grey lighten-5 z-depth-1">
+		          <div class="row valign-wrapper">
+		            <div class="col s2">
+		              <img src="{{ image.media.url }}" class="materialboxed responsive-img" style="width: 1200px; height: 800px;"> <!-- notice the "circle" class -->
+		            </div>
+		            <div class="col s10">
+		              <span class="black-text">
+		                {{ image.media.url }}
+		              </span>
+		            </div>
+		          </div>
+		        </div>
+				</div>					
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+</section>
+
+{% endblock %}
+{% endblock %}

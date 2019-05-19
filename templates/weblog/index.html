@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% load static %}
+{% load cache %}
 
 {% block body %}
 {% block content %}
@@ -82,7 +84,10 @@
         <div class="col s12">
           <h3>Search Adentan Municipal Assembly</h3>
           <div class="input-field">
-            <input type="text" class="white grey-text autocomplete" id="autocomplete-input" placeholder="Search entries...">
+            <form method="get" action="{% url 'search:search' %}">
+              <input type="text" class="white grey-text autocomplete" id="autocomplete-input" placeholder="Search entries..." name="q" id="id_q" value="{{ query }}">
+              <!-- <input type="submit" name="submit" value="submit"> -->
+            </form>
           </div>
         </div>
       </div>
@@ -96,18 +101,15 @@
         <span class="green-text">Photo</span> Gallery
       </h4>
       <div class="row">
+        {% for image in media %}
+        {% cache 1800 image %}
         <div class="col s12 m3">
-          <img src="{% static 'img/projects/adma5.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+          {% if image.media.url %}
+          <img src="{{ image.media.url }}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
+         {% endif %}
         </div>
-        <div class="col s12 m3">
-          <img src="{% static 'img/projects/adma7.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
-        </div>
-        <div class="col s12 m3">
-          <img src="{% static 'img/projects/adma3.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
-        </div>
-        <div class="col s12 m3">
-          <img src="{% static 'img/projects/adma4.jpg' %}" alt="" class="materialboxed responsive-img" style="width: 1600px; height: 900px;">
-        </div>
+        {% endcache %}
+        {% endfor %}
       </div>
   </section>
 
@@ -118,20 +120,17 @@
         <div class="col s12">
           <h4>Follow AdMA</h4>
           <p>Follow us on social media</p>
-          <a href="#" class="white-text">
+          <a href="https://www.facebook.com/AdentanMunicipalAssembly/" class="white-text">
             <i class="fab fa-facebook fa-4x"></i>
           </a>
-          <a href="#" class="white-text">
+          <a href="https://twitter.com/AdMAOfficial1" class="white-text">
             <i class="fab fa-twitter fa-4x"></i>
           </a>
-          <a href="#" class="white-text">
-            <i class="fab fa-linkedin fa-4x"></i>
+          <a href="https://www.instagram.com/explore/tags/adentanmunicipalassembly/?hl=en" class="white-text">
+            <i class="fab fa-instagram fa-4x"></i>
           </a>
-          <a href="#" class="white-text">
-            <i class="fab fa-google-plus fa-4x"></i>
-          </a>
-          <a href="#" class="white-text">
-            <i class="fab fa-pinterest fa-4x"></i>
+          <a href="https://www.youtube.com/channel/UCxYz7wOKhK9WDbUxAeqMy8w/featured" class="white-text">
+            <i class="fab fa-youtube fa-4x"></i>
           </a>
         </div>
       </div>
@@ -150,7 +149,8 @@
     </h3>
 		  <div class="row">
 		  	{% for entry in entries %}
-		    <div class="col s12 m6 l3">
+        {% cache 1800 entry %}
+		    <div class="col s12 m6 l4">
 		      <div class="card medium">
 		        <div class="card-image">
 		        {% if entry.cover_pic.url %}
@@ -170,6 +170,7 @@
 		        </div>
 		      </div>
 		    </div>
+        {% endcache %}
 		    {% endfor %}
 		  </div>
 	  </div>
@@ -204,9 +205,9 @@
 	          quisquam impedit corrupti eveniet.</p>
 	      </div>
           <ul class="collection">
-            <h5>Please fill out this form</h5>
+            <h5>Downloads</h5>
             <li class="collection-item"><a href="{% static 'files/Bye-laws.pdf' %}"><i class="material-icons">cloud_download</i> Bye-laws</a></li>
-            <li class="collection-item"><a href="{% static 'files/DEVT _BUILDING_CONST_PERMIT.pdf' %}"><i class="material-icons">cloud_download</i> Development Permmit</a></li>
+            <li class="collection-item"><a href="{% static 'files/DEVT _BUILDING_CONST_PERMIT.pdf' %}"><i class="material-icons">cloud_download</i> Development Permit</a></li>
           </ul>
         </div>
       </div>

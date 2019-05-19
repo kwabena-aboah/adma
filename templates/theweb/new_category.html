@@ -1,44 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
 {% block content %}
 
- <div class="col s12 m12">
-	<div class="white-text center" style="background-color: #43a047;">
-		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
-		<h3>{% block title%}New Category{% endblock %}</h3>
-		<p>Some texts here</p>
-	</div>
-</div>
 <section class="section white lighten-4">
 	<div class="container">
 		<div class="row">
-			<div class="col s12 m4">
-				<ul class="collection with-header">
-					<li class="collection-header"><h4>Star Navigation</h4></li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma1.jpg' %}" alt="" class="circle">
-					      <span class="title"><strong><b>News</b></strong></span>
-					      <p>latest news and posts from AdMA</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:entries_index' %}"><i class="material-icons">grade</i></a>
-					</li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma2.png' %}" alt="" class="circle">
-					      <span class="title"><strong><b>Other Portals</b></strong></span>
-					      <p>Relevant governmental links</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:links' %}"><i class="material-icons">grade</i></a>
-					</li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma3.png' %}" alt="" class="circle">
-						<span class="title"><strong><b>News Category</b></strong></span>
-					      <p>Category description for news</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:categories' %}"><i class="material-icons">grade</i></a>
-					</li>
-					{% if user.is_staff %}
-						<li class="collection-item"><a class="grey-text text-darken-3" href="#">All Contacts</a></li>
-					{% endif %}
-				</ul>
-			</div>
+			{% include 'weblog/sidebar.html' %}
 		<div class="col s12 m8">
         <div class="container">
 			<form method="post" action="{% url 'weblog:new_category' %}">

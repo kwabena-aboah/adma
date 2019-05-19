@@ -10,6 +10,5 @@
     $('.tap-target').tapTarget();
     $('.parallax').parallax();
     $('.tabs').tabs();
-    $(".dropdown-trigger").dropdown();
+    $(".dropdown-trigger").dropdown({ hover: false });
   });
-     

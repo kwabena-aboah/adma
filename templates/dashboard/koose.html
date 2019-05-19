@@ -4,45 +4,13 @@
 {% block body %}
 {% block content %}
 
-<div class="col s12 m12">
-	<div class="white-text center" style="background-color: #43a047;">
-		<img class="responsive-img" src="{% static 'img/projects/adma8.jpg' %}" style="width: 1800px; height: 200px;">
-		<h3>{% block title%}Koose Zonal Council{% endblock %}</h3>
-		<p>Some texts here</p>
-	</div>
-</div>
 <section class="section white lighten-4">
 	<div class="container">
 		<div class="row">
-			<div class="col s12 m3">
-				<ul class="collection with-header">
-					<li class="collection-header"><h5>Star Navigation</h5></li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma1.jpg' %}" alt="" class="circle">
-					      <span class="title"><strong><b>News</b></strong></span>
-					      <p>latest news and posts from AdMA</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:entries_index' %}"><i class="material-icons">grade</i></a>
-					</li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma2.png' %}" alt="" class="circle">
-					      <span class="title"><strong><b>Other Portals</b></strong></span>
-					      <p>Relevant governmental links</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:links' %}"><i class="material-icons">grade</i></a>
-					</li>
-					<li class="collection-item avatar">
-						<img src="{% static 'img/collections/adma3.png' %}" alt="" class="circle">
-						<span class="title"><strong><b>News Category</b></strong></span>
-					      <p>Category description for news</p>
-						<a class="grey-text text-darken-3 secondary-content" href="{% url 'weblog:categories' %}"><i class="material-icons">grade</i></a>
-					</li>
-					{% if user.is_staff %}
-						<li class="collection-item"><a class="grey-text text-darken-3" href="#">All Contacts</a></li>
-					{% endif %}
-				</ul>
-			</div>
-		<div class="col s12 m9">
+			<h3 class="center">{% block title%}Koose Zonal Council{% endblock %}</h3>
+			{% include 'weblog/sidebar.html' %}
+		<div class="col s12 m8">
 	    <div class="container">
-	    	<h2>Koose Zonal</h2>
 			<p class="flow-text">The Koose Zonal Council is one of the four Zonal Councils of the Adentan Municipality.  The main functions of the Zonal Council include the mobilization of revenue, implementation of policies at the local level and also mobilize community to participate in decision making. As part of activities to help the Zonal Council properly plan and implement activities for development, the Zonal Council was assisted to come out with an a four (4) years (2018-2021) Medium Term Development Plan which will guide the implementation of envisioned development projects and programmes in the zonal area.</p>
 
 			<p class="flow-text">The preparation of this Medium Term Zonal Plan is to further deepen the decentralization process by bringing governance to the door-steps of the people through involving them in the Planning Process which affects their own life. In view of these, a series of meetings were held with the Zonal Council members and other stakeholders in order to come up with this document. The participants were expected to lead and assist in identifying the problems/ needs, goals and objectives of their Zonal Council and to harmonize these into a Zonal Council plan, hence the making of the this document.</p>
