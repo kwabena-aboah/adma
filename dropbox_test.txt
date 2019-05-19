@@ -1,4 +1,3 @@
 >>> import dropbox
->>> dbx = dropbox.Dropbox("EsxPRZuSHKAAAAAAAAAAMBPQ-ysdMNT8jEunLrmHnagNw3iuFaSjVCzflffN9wMa")
+>>> dbx = dropbox.Dropbox("DROPBOX_OAUTH2_TOKEN")
 >>> dbx.users_get_current_account()
-FullAccount(account_id='dbid:AACetxnCoFx7b14jSo9wSOWV8RGd-NFRXR0', name=Name(given_name='mintah', surname='obed', familiar_name='mintah', display_name='mintah obed', abbreviated_name='MO'), email='obed30mintah@yahoo.com', email_verified=True, disabled=False, locale='en', referral_link='https://db.tt/Kp9Yt5j2ms', is_paired=False, account_type=AccountType('basic', None), root_info=UserRootInfo(root_namespace_id='1174034771', home_namespace_id='1174034771'), profile_photo_url=None, country='GH', team=None, team_member_id=None)
