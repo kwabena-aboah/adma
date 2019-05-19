@@ -11,26 +11,30 @@ from django.core.mail import send_mail
 def login_now(request):
     # magic link login
     if request.method == "POST":
-        email = request.POST.get('emailId')
-        user = User.objects.get(email=email)
-        login_token = utils.get_query_string(user)
-        login_link = 'http://127.0.0.1:8000/{}'.format(login_token)
+        try:
+            email = request.POST.get('emailId')
+            user = User.objects.get(email=email)
+            login_token = utils.get_query_string(user)
+            login_link = 'https://admagvgh.herokuapp.com/{}'.format(login_token)
+            # login_link = '127.0.0.1:8000/{}'.format(login_token)
 
-        html_message = """
-		<p>Hi there,</p>
-		<p>Here is your <a href="{}">magic link</a></p>
-		<p>Thanks,</p>
-		<p>AdMA Blog</p>
-		""".format(login_link)
+            html_message = """
+    		<p>Hi there,</p>
+    		<p>Here is your <a href="{}">magic link</a></p>
+    		<p>Thanks,</p>
+    		<p>AdMA Blog</p>
+    		""".format(login_link)
 
-        send_mail(
-            'AdMA Magic Link',
-            html_message,
-            'admin@domain.com',
-            [email],
-            fail_silently=False,
-            html_message=html_message
-        )
+            send_mail(
+                'AdMA Magic Link',
+                html_message,
+                'admin@admagvgh.herokuapp.com',
+                [email],
+                fail_silently=False,
+                html_message=html_message
+            )
+        except User.DoesNotExist:
+            raise Http404("Requested user does not exist. Contact site admin.")
         message = "Please check your email for magic link."
         context = {'message': message}
         return render(request, 'accounts/login.html', context)

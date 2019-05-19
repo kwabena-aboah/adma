@@ -33,7 +33,7 @@ EMAIL_HOST_PASSWORD = r'kwabena13'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'Admin<admin@domain.com>'
+DEFAULT_FROM_EMAIL = 'Admin<admin@admagvgh.herokuapp.com>'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -124,19 +124,34 @@ WSGI_APPLICATION = 'adma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'adma',
+#         'USER': 'brainstien',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'adma',
-        'USER': 'brainstien',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+'default': dj_database_url.config(default='postgres://localhost')
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
+
+
+CACHES = {
+    'default':{
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            '127.0.0.1:11211',
+            'localhost:11211'
+            ]
+
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -174,7 +189,7 @@ USE_TZ = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 # default file storage
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = 'EsxPRZuSHKAAAAAAAAAAMBPQ-ysdMNT8jEunLrmHnagNw3iuFaSjVCzflffN9wMa'
 DROPBOX_CONSUMER_KEY = 'qqy9cibt48nqnri'
 DROPBOX_CONSUMER_SECRET = 'wf1pumdc3u2ugsk'
@@ -198,8 +213,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-DEBUG = False
+ALLOWED_HOSTS = ['localhost','127.0.0.1', '.herokuapp.com']
+DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 try:
